@@ -22,7 +22,9 @@
                         <v-select :items="studies_level" v-model="level" label="Επίπεδο Σπουδών"></v-select>
                     </v-col>
                 </v-row>
-                <v-row v-if="level=='Βασικό Πτυχίο'">
+                <v-card v-if="level=='Βασικό Πτυχίο'" flat>
+                    <v-row>
+
                     <v-col class="d-flex align-center flex-column">
                         <!-- <v-badge overlap color="pink" icon="fas fa-info-circle" @click.native="alert_isotimia!=alert_isotimia"> -->
                             <v-radio-group v-model="isotimia" mandatory label="Ισοτιμία/Αντιστοιχία Πτυχίου">
@@ -30,12 +32,11 @@
                                 <v-radio label=" Ισοτιμία Πτυχίου" value="2"></v-radio>
                             </v-radio-group>
                         <!-- </v-badge> -->
-                        <v-btn class="mb-1" elevation="0" color="blue lighten-3 white--text" fab x-small v-on:click="alert_isotimia=!alert_isotimia"><v-icon>fas fa-info-circle</v-icon> </v-btn>
+                        <!-- <v-btn class="mb-1" elevation="0" color="blue lighten-3 white--text" fab x-small v-on:click="alert_isotimia=!alert_isotimia"><v-icon>fas fa-info-circle</v-icon> </v-btn>
                         <v-alert type="info" v-model="alert_isotimia" text style="font-size: 60%" class="ma-0">
                             <strong>Ισοτιμία:</strong>  Αναγνώριση τομέα ανώτατης εκπαίδευσης (Πανεπιστήμιο ή ΤΕΙ) του κρινόμενου τίτλου. <br>
                             <strong> Αντιστοιχία:</strong> Αντιστοίχιση του κρινόμενου τίτλου με συγκεκριμένο πρόγραμμα σπουδών Ελληνικού Πανεπιστημίου ή ΤΕΙ.
-                        </v-alert>
-
+                        </v-alert> -->
                     </v-col>
                     <v-col class="d-flex align-center flex-column">
                         <v-radio-group v-model="isotimia" mandatory label="με φορέα ανώτατης εκπαίδευσης">
@@ -46,14 +47,31 @@
                         <v-radio-group v-model="isotimia" mandatory class="ma-0">
                             <v-checkbox dense label="Με συνεκτίμηση Τίτλου"></v-checkbox>
                         </v-radio-group>
-                        <v-btn class="mb-1" elevation="0" color="blue lighten-3 white--text" fab x-small v-on:click="alert_foreas=!alert_foreas"><v-icon>fas fa-info-circle</v-icon> </v-btn>
+                        <!-- <v-btn class="mb-1" elevation="0" color="blue lighten-3 white--text" fab x-small v-on:click="alert_foreas=!alert_foreas"><v-icon>fas fa-info-circle</v-icon> </v-btn>
                         <v-alert :value="alert_foreas" type="info" text style="font-size: 60%" class="ma-0">
                             Εάν ο κρινόμενος τίτλος είναι τριετούς διάρκειας,
                             απαιτείται η συνεκτίμηση μεταπτυχιακού τίτλου για την Ισοτιμία/Ισοτιμία
                             και Αντιστοιχία με πτυχίο Πανεπιστημίου
-                        </v-alert>
+                        </v-alert> -->
                     </v-col>
-                </v-row>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="4">
+                            <v-alert type="info" text style="font-size: 60%" class="ma-0">
+                                <strong>Ισοτιμία:</strong>  Αναγνώριση τομέα ανώτατης εκπαίδευσης (Πανεπιστήμιο ή ΤΕΙ) του κρινόμενου τίτλου. <br>
+                                <strong> Αντιστοιχία:</strong> Αντιστοίχιση του κρινόμενου τίτλου με συγκεκριμένο πρόγραμμα σπουδών Ελληνικού Πανεπιστημίου ή ΤΕΙ.
+                            </v-alert>
+                        </v-col>
+                        <v-spacer></v-spacer>
+                        <v-col cols="4">
+                            <v-alert type="info" text style="font-size: 60%" class="ma-0">
+                                Εάν ο κρινόμενος τίτλος είναι τριετούς διάρκειας,
+                                απαιτείται η συνεκτίμηση μεταπτυχιακού τίτλου για την Ισοτιμία/Ισοτιμία
+                                και Αντιστοιχία με πτυχίο Πανεπιστημίου
+                            </v-alert>
+                        </v-col>
+                    </v-row>
+                </v-card>
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
