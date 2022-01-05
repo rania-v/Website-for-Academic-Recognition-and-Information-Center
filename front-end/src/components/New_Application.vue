@@ -1,0 +1,100 @@
+<template>
+    <v-card>
+        <v-card-title>Νέα Αίτηση</v-card-title>
+        <v-stepper alt-labels v-model="stepper">
+            <v-stepper-header>
+                <v-stepper-step step="1" editable>Είδος Αίτησης</v-stepper-step>
+                <v-divider></v-divider>
+                <v-stepper-step step="2" editable>Προσωπικά Στοιχεία</v-stepper-step>
+                <v-divider></v-divider>
+                <v-stepper-step step="3" editable>Τίτλος Σπουδών</v-stepper-step>
+                <v-divider></v-divider>
+                <v-stepper-step step="4" editable>Συνεκτίμηση Τίτλου</v-stepper-step>
+                <v-divider></v-divider>
+                <v-stepper-step step="5" editable>Είδος Αίτησης</v-stepper-step>
+            </v-stepper-header>
+            <v-stepper-content step="1">
+                <v-row>
+                    <v-col class="d-flex align-center">
+                        <v-select :items="appl_type" label="Είδος Αίτησης"></v-select>
+                    </v-col>
+                    <v-col class="d-flex align-center">
+                        <v-select :items="studies_level" v-model="level" label="Επίπεδο Σπουδών"></v-select>
+                    </v-col>
+                </v-row>
+                <v-row v-if="level=='Βασικό Πτυχίο'">
+                    <v-col class="d-flex align-center flex-column">
+                        <!-- <v-badge overlap color="pink" icon="fas fa-info-circle" @click.native="alert_isotimia!=alert_isotimia"> -->
+                            <v-radio-group v-model="isotimia" mandatory label="Ισοτιμία/Αντιστοιχία Πτυχίου">
+                                <v-radio label=" Ισοτιμία και Αντιστοιχία Πτυχίου" value="1"></v-radio>
+                                <v-radio label=" Ισοτιμία Πτυχίου" value="2"></v-radio>
+                            </v-radio-group>
+                        <!-- </v-badge> -->
+                        <v-btn class="mb-1" elevation="0" color="blue lighten-3 white--text" fab x-small v-on:click="alert_isotimia=!alert_isotimia"><v-icon>fas fa-info-circle</v-icon> </v-btn>
+                        <v-alert type="info" v-model="alert_isotimia" text style="font-size: 60%" class="ma-0">
+                            <strong>Ισοτιμία:</strong>  Αναγνώριση τομέα ανώτατης εκπαίδευσης (Πανεπιστήμιο ή ΤΕΙ) του κρινόμενου τίτλου. <br>
+                            <strong> Αντιστοιχία:</strong> Αντιστοίχιση του κρινόμενου τίτλου με συγκεκριμένο πρόγραμμα σπουδών Ελληνικού Πανεπιστημίου ή ΤΕΙ.
+                        </v-alert>
+
+                    </v-col>
+                    <v-col class="d-flex align-center flex-column">
+                        <v-radio-group v-model="isotimia" mandatory label="με φορέα ανώτατης εκπαίδευσης">
+                            <v-checkbox dense v-for="i in foreis" :key="i.id" :label="i.id" :value="i.value"></v-checkbox>
+                        </v-radio-group>
+                    </v-col>
+                    <v-col class="d-flex align-center flex-column">
+                        <v-radio-group v-model="isotimia" mandatory class="ma-0">
+                            <v-checkbox dense label="Με συνεκτίμηση Τίτλου"></v-checkbox>
+                        </v-radio-group>
+                        <v-btn class="mb-1" elevation="0" color="blue lighten-3 white--text" fab x-small v-on:click="alert_foreas=!alert_foreas"><v-icon>fas fa-info-circle</v-icon> </v-btn>
+                        <v-alert :value="alert_foreas" type="info" text style="font-size: 60%" class="ma-0">
+                            Εάν ο κρινόμενος τίτλος είναι τριετούς διάρκειας,
+                            απαιτείται η συνεκτίμηση μεταπτυχιακού τίτλου για την Ισοτιμία/Ισοτιμία
+                            και Αντιστοιχία με πτυχίο Πανεπιστημίου
+                        </v-alert>
+                    </v-col>
+                </v-row>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn v-on:click="stepper++">Επόμενο</v-btn>
+                </v-card-actions>
+            </v-stepper-content>
+            <v-stepper-content step="2">
+                <UserPersonal :edit="false"/>
+                 <v-card-actions>
+                    <v-btn v-on:click="stepper--">Προηγούμενο</v-btn>
+                    <v-spacer></v-spacer>
+                    <v-btn v-on:click="stepper++">Επόμενο</v-btn>
+                </v-card-actions>
+            </v-stepper-content>
+        </v-stepper>
+    </v-card>
+</template>
+
+<script>
+
+import UserPersonal from '../components/User_personal.vue'
+
+export default ({
+    name: 'NweApplicaton',
+    components: {
+        UserPersonal
+    },
+    data: function() {
+        return {
+            level: null,
+            stepper: 1,
+            alert_isotimia: false,
+            alert_foreas: false,
+            appl_type:['Αναγνώριση Τίτλου', 'Εξέταση Ομοταγούς Υδρύματος', 'Βαθμολογική Αντιστοιχία'],
+            studies_level: ['Βασικό Πτυχίο', 'Μεταπτυχιακό', 'Διδακτορικό'],
+            isotimia: '1',
+            foreis: [
+                {id: 'Πανεπιστήμιο',value: '1'},
+                {id: 'ΤΕΙ',value: '2'},
+            ],
+        }
+    },
+})
+</script>

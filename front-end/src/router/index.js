@@ -56,7 +56,8 @@ const routes = [
       {
         path: '/user-profile/personal-info',
         name: 'personal-info',
-        component: UserPersonal
+        component: UserPersonal,
+        props: {edit: true}
       },
       {
         path: '/user-profile/oi-aithseis-mou',

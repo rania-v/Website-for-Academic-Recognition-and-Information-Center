@@ -3,7 +3,7 @@
         <v-card flat>
             <v-card-title class="indigo--text">Προσωπικά Στοιχεία
                 <v-spacer></v-spacer>
-                <v-btn fab color="indigo" class="white--text" small><v-icon small>mdi-pencil</v-icon></v-btn>
+                <v-btn v-if="edit" fab color="indigo" class="white--text" small><v-icon small>mdi-pencil</v-icon></v-btn>
             </v-card-title>
             <v-card-text class="d-flex">
                 <v-col >
@@ -48,6 +48,7 @@
 
 export default ({
     name:'UserPersonal',
+    props:['edit'],
     data: function() {
         return {
             picker: false,
