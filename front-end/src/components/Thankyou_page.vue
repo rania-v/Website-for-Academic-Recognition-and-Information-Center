@@ -2,7 +2,7 @@
     <v-container fluid>
         <!-- <v-card> -->
             <v-card-title class="justify-center">
-                <v-img src="../assets/mail.svg" max-width="15%" class="justify-center"></v-img>
+                <v-img src="../assets/thanku2.svg" max-width="15%" class="justify-center"></v-img>
             </v-card-title>
             <h1 class="font-weight-light indigo--text text-center">Ευχαριστούμε που επικοινώνησες μαζί μας</h1>
 
@@ -28,7 +28,7 @@
                 </v-col>
                 <v-col cols="4" class="d-flex justify-center">
                     <v-card class="pt-2" width="90%" to="/FAQ">
-                        <v-img src="../assets/qs.svg" max-height="40%" contain></v-img>
+                        <v-img src="../assets/faq1.svg" max-height="40%" contain></v-img>
                         <v-card-title style="word-break: break-word;" class="text-center">FAQs</v-card-title>
                         <v-card-subtitle>
                             Για όποιες άλλες αποροίες μπορείς να ψάξεις στις συχνές ερωτήσεις
