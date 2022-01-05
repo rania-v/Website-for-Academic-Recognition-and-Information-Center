@@ -11,8 +11,8 @@
           <v-row>
             <v-spacer></v-spacer>
             <v-col cols="8" align-self="center" align="right">
-              <v-btn rounded small class="grey lighten-1 ma-2" v-on:click="sign_up = true">Sign Up</v-btn>
-              <v-btn rounded small class="ma-2" v-on:click="sign_in = true">Sign In</v-btn>
+              <v-btn rounded x-small text class="purple lighten-2 ma-2" v-on:click="sign_up = true">Δημιουργία Λογαρισμού</v-btn>
+              <v-btn rounded small class="ma-2 purple darken-2" v-on:click="sign_in = true">Σύνδεση</v-btn>
             </v-col>
             <v-divider vertical></v-divider>
             <v-col cols="2" align-self="center" align="center">
@@ -66,11 +66,15 @@ export default {
       logo: require("./assets/logo_doatap.png"),
       base_color: "indigo darken-2",
       eng: false,
-      Sections: [ {name: "Αρχική", route: "/"},
-                  {name: "Αναγνώριση", route: "/Anagnwrish"},
-                  { name: "Αίτηση", route: "/Aithsh"},
-                  { name: "Ενημέρωση", route: "/Enhmerwsh"},
-                  { name: "Επικοινωνία", route: "/Epikoinwnia"}]
+      Sections: [ 
+        {name: "Αρχική", route: "/"},
+        {name: "Αναγνώριση", route: "/Anagnwrish"},
+        { name: "Αίτηση", route: "/Aithsh"},
+        { name: "Ενημέρωση", route: "/Enhmerwsh"},
+        {name: "FAQ", route: "/FAQ"},
+        { name: "Επικοινωνία", route: "/Epikoinwnia"}
+      ],
+
     }
   }
 };

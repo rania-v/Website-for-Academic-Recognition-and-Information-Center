@@ -3,7 +3,7 @@
         <v-card-title class="indigo--text justify-center">Δημιουργία Λογαρισμού</v-card-title>
         <v-card-text class="text-center pb-0">
             όλα τα παρακάτω στοιχεία είναι απαραίτητα
-            <v-form v-model="valid" ref="form">
+            <v-form v-model="valid" ref="form" id="reg-form" @submit="registerUser()" >
                 <v-row class="ma-0">
                     <v-col>
                         <v-text-field dense :color="color" v-model="first_name" label="Όνομα" :rules="required_rule" required></v-text-field>
@@ -62,6 +62,8 @@ export default {
       return{
         color: 'indigo',
         valid:true,
+        first_name: null,
+        last_name:null,
         mail: null,
         birthdate: null,
         show_pass1: false,
@@ -74,13 +76,32 @@ export default {
       }
     },
     methods: {
-      validate () {
-        this.$refs.form.validate()
-      },
-      reset() {
-          this.$refs.form.reset()
+        validate () {
+            this.$refs.form.validate()
+            // this.$refs.form.submit()
+        },
+        reset() {
+            this.$refs.form.reset()
 
-      }
-    }
+        },
+        async registerUser(event) {
+            const mail = this.mail.value
+            const password = this.password.value
+            event.preventDefault()
+            const result = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                boody: JSON.stringify({
+                    mail,
+                    password
+                })
+            }).then(res => res.json())
+            this.first_name = 'OK'
+            console.log(result)
+        }
+    },
+    
 }
 </script>

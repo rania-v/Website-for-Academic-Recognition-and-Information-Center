@@ -1,5 +1,7 @@
 <template>
-    <v-card elevation="15">
+<v-container fluid>
+
+    <v-card elevation="15" fluid>
         <v-card-title class="indigo--text justify-center">Σύνδεση</v-card-title>
         <v-card-text class="text-center">
             όλα τα παρακάτω στοιχεία είναι απαραίτητα  
@@ -32,9 +34,11 @@
             <!-- <v-spacer></v-spacer> -->
             <v-btn class="indigo--text" dark text @click="reset">Clear</v-btn>
             <v-spacer></v-spacer>
-            <v-btn :class="color" dark depressed  @click="validate">Sign In</v-btn>
+            <!-- <v-btn :class="color" dark depressed  @click="validate">Sign In</v-btn> -->
+            <v-btn :class="color" dark depressed  to="/user-profile">Sign In</v-btn>
         </v-card-actions>
     </v-card>
+    </v-container>
 </template>
 
 <script>

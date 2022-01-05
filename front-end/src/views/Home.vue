@@ -33,25 +33,25 @@
             </v-col>
           </v-card>
         </v-col>
-        <v-col cols="6" height="100%">
-            <v-parallax src="../assets/back.jpg" height="100%">
-            <v-col height="100%">
-              <v-card-actions >
+        <v-col cols="6" width="auto" class="d-flex justify-center">
+            <v-parallax src="../assets/back.jpg">
+            <!-- <v-col > -->
+              <v-card-actions class="pa-0 ma-0" width="100%">
                 <v-spacer></v-spacer>
-                <v-card-text v-if="signup" class="blue--text text-right">
+                <v-card-text v-if="signup" class="white--text text-right">
                   Δεν έχεις λογαριασμό?
                 </v-card-text>
-                <v-card-text v-if="signin" class="blue--text text-right">
+                <v-card-text v-if="signin" class="white--text text-right">
                   Είσαι ήδη εγγεγραμμένος χρήστης?
                 </v-card-text>
                 <v-btn v-if="signup" @click="signin=true, signup=false" text rounded dark small color="indigo darken-4">Δημιουργία λογαριασμού</v-btn>
                 <v-btn v-if="signin" @click="signin=false, signup=true" text rounded dark small color="indigo darken-4">Σύνδεση σε λογαριασμό</v-btn>
               </v-card-actions>
-              <v-card-text  class="pt-0">
+              <!-- <v-card-text  class="pt-0"> -->
                 <SignUp :signin="signin" v-if="signin"/>
                 <SignIn :signup="signup" v-if="signup"/>
-              </v-card-text>
-            </v-col>
+              <!-- </v-card-text> -->
+            <!-- </v-col> -->
             </v-parallax>
         </v-col>
       </v-row>
