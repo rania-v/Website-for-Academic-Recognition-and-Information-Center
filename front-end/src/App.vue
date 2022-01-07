@@ -48,6 +48,29 @@
   </v-app>
 </template>
 
+<style>
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(58, 56, 155);
+  border-radius: 10px;
+}
+
+/* Handle on hover
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(126, 13, 179);
+} */
+</style>
+
 <script>
 
 import SignIn from "./components/SignIn.vue"

@@ -18,11 +18,11 @@
                         </v-card>
                     </v-col>
                 </v-row>
-                <v-alert type="info" dense text v-if="selected_tab=='1'">Οι υποβεβλημένες αιτήσεις δεν μπορούν να δεχτούν επεξεργασία</v-alert>
+                <v-alert type="info" dense text v-if="selected_tab=='1'" class="text--darken-2"> Οι υποβεβλημένες αιτήσεις δεν μπορούν να δεχτούν επεξεργασία</v-alert>
                 <v-row  v-if="selected_tab=='1'">
                     <v-col v-for="n in sub_appl" :key="n" class="d-flex child-flex" cols="4">
-                        <v-card v-on:click="open_application=true, selected = n">
-                            <SubmitedAithshCard :id="n.id" :status="n.status"/>
+                        <v-card>
+                            <SubmitedAithshCard :appl="n"/>
                             
                         </v-card>
                     </v-col>
