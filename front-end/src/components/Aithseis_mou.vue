@@ -12,8 +12,8 @@
             <v-card-text>
                 <v-row  v-if="selected_tab=='0'">
                     <v-col v-for="n in appl" :key="n" class="d-flex child-flex" cols="4">
-                        <v-card v-on:click="open_application=true, selected = n">
-                            <MyAithshCard :id="n.id" :status="n.status"/>
+                        <v-card>
+                            <MyAithshCard :appl="n"/>
                             
                         </v-card>
                     </v-col>
@@ -23,35 +23,9 @@
                     <v-col v-for="n in sub_appl" :key="n" class="d-flex child-flex" cols="4">
                         <v-card>
                             <SubmitedAithshCard :appl="n"/>
-                            
                         </v-card>
                     </v-col>
                 </v-row>
-            <v-dialog v-model="open_application" v-if="selected!=null" width="50%">
-                <v-card>
-                    <v-card-title>Αίτηση {{selected.id}}</v-card-title>
-                    <v-card-text>
-                        {{selected.status}} <br>
-                        <v-timeline align-top dense>
-                            <v-timeline-item :icon="i.icon" small fill-dot color="indigo lighten-2" v-for="i in selected.history" :key="i.id" style="font-size: 80%" class="align-center">
-                                <v-row>
-                                    <v-col><strong>{{i.status}} </strong> </v-col>
-                                    <v-col> {{i.date}}</v-col>
-                                </v-row>
-                            </v-timeline-item>
-                        </v-timeline>
-                    </v-card-text>
-                    <v-card-actions v-if="selected.status=='Εγκρίθηκε'">
-                        <v-spacer></v-spacer>
-                        Κατεβάστε το αρχείο της έγκρισης
-                        <v-btn fab class="ma-2" small color="green"><v-icon small color="white">fas fa-file-download</v-icon> </v-btn>
-                    </v-card-actions>
-                    <v-card-text v-if="selected.status!='Εγκρίθηκε'">
-                        Λόγοι Απόρριψης <br>
-                        
-                    </v-card-text>
-                </v-card>
-            </v-dialog>
             </v-card-text>
             <v-dialog v-model="new_appl" width="80%">
                 <NewApplicaton/>
@@ -86,7 +60,15 @@ export default ({
                     ],
                 },
                 {id: '12345', status: 'Απορρίφθηκε'},
-                {id: '12345', status: 'Εγκρίθηκε'},
+                {id: '12345', status: 'Εγκρίθηκε', papers:null, history:[
+                    {id:'1', status:'Υποβολή', date:'01/01/21', icon:'fas fa-arrow-circle-right'},
+                    {id:'2', status:'Υπο Επεξεργασία', date:'01/01/21', icon:'fas fa-cog'},
+                    {id:'3', status:'Απόρριψη', date:'01/01/21', icon:'fas fa-times-circle'},
+                    {id:'4', status:'Αίτηση Επανεξέτασης', date:'01/01/21', icon:'fas fa-redo-alt'},
+                    {id:'5', status:'Υπο Επεξεργασία', date:'01/01/21', icon:'fas fa-cog'},
+                    {id:'6', status:'Έγκρισης', date:'01/01/21', icon:'fas fa-check-circle'},
+                    ],
+                },
                 {id: '12345', status: 'Απορρίφθηκε'},
                 {id: '12345', status: 'Απορρίφθηκε'},
             ],
@@ -94,7 +76,10 @@ export default ({
                 {id: '-00000', status: 'Εγκρίθηκε', papers:null, history:[
                     {id:'1', status:'Υποβολή', date:'01/01/21', icon:'fas fa-arrow-circle-right'},
                     {id:'2', status:'Υπο Επεξεργασία', date:'01/01/21', icon:'fas fa-cog'},
-                    {id:'1', status:'Έγκριση', date:'01/01/21', icon:'fas fa-check-circle'},
+                    {id:'3', status:'Απόρριψη', date:'01/01/21', icon:'fas fa-check-circle'},
+                    {id:'4', status:'Αίτηση Επανεξέτασης', date:'01/01/21', icon:'fas fa-check-circle'},
+                    {id:'5', status:'Υπο Επεξεργασία', date:'01/01/21', icon:'fas fa-cog'},
+                    {id:'6', status:'Έγκρισης', date:'01/01/21', icon:'fas fa-check-circle'},
                     ],
                 },
                 {id: '00000', status: 'Απορρίφθηκε'}

@@ -24,7 +24,7 @@
             <v-spacer></v-spacer>
             <v-col  class="ma-0 pa-0">
               <v-tabs height="30px" class="indigo  ma-0 pb-0 white--text">
-                <v-tabs-slider color="indigo darken-3"></v-tabs-slider>
+                <v-tabs-slider color="lime"></v-tabs-slider>
                   <v-tab v-for="item in Sections" :key="item.route" class="indigo darken-2" :to="item.route">{{item.name}}</v-tab>
               </v-tabs>
             </v-col>
@@ -64,11 +64,6 @@
   background: rgb(58, 56, 155);
   border-radius: 10px;
 }
-
-/* Handle on hover
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(126, 13, 179);
-} */
 </style>
 
 <script>

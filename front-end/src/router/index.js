@@ -9,7 +9,7 @@ import Thankyou_page from '../components/Thankyou_page.vue'
 import UserProfile from '../views/User_Profile.vue'
 import UserPersonal from '../components/User_personal.vue'
 import MyAithseis from '../components/Aithseis_mou.vue'
-
+import Dikaiologhtika from '../components/Dikaiologhtika.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -62,8 +62,14 @@ const routes = [
       {
         path: '/user-profile/oi-aithseis-mou',
         name: 'oi-aithseis-mou',
-        component: MyAithseis
+        component: MyAithseis,
       },
+      {
+        path: '/user-profile/ta-dikaiologhtika-mou',
+        name: 'ta-dikaiologhtika-mou',
+        component: Dikaiologhtika,
+      },
+      
     ]
   },
 ]

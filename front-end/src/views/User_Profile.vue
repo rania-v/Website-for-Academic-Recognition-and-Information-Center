@@ -34,9 +34,9 @@ export default ({
             sections: [
                 {name: 'Προσωπικά Στοιχεία', icon: 'fas fa-user-circle', route:'/user-profile/personal-info'},
                 {name: 'Λογαριασαμός', icon: 'fas fa-clipboard-list', },
-                {name: 'Τα Δικαιολογητικά μου', icon: 'fas fa-book'},
+                {name: 'Τα Δικαιολογητικά μου', icon: 'fas fa-book', route:'/user-profile/ta-dikaiologhtika-mou'},
                 {name: 'Οι Αιτήσεις μου', icon: 'fas fa-file-alt', route:'/user-profile/oi-aithseis-mou'},
-                {name: 'Ενημερώσεις', icon: 'fas fa-bell'},
+                // {name: 'Ενημερώσεις', icon: 'fas fa-bell'},
             ],user: {
                 photo: photo_,
                 name: 'lalala',
