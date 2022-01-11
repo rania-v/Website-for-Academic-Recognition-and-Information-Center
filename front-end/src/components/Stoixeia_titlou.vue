@@ -61,6 +61,7 @@
                 <v-btn v-on:click="addExtra" depressed><v-icon small class="mr-1">fas fa-plus</v-icon> Προσθήκη Πανεπιστημίου/Ιδρύματος</v-btn>
             </v-card-actions>
             <v-divider></v-divider>
+            
             <v-card-subtitle>
                 Επιλογή του προγράμματος σπουδών Ελληνικού Πανεπιστημίου ή ΤΕΙ με το οποίο θα γίνει η αντιστοιχία του κρινόμενου τίτλου.
             </v-card-subtitle>

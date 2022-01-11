@@ -11,8 +11,30 @@
           <v-row>
             <v-spacer></v-spacer>
             <v-col cols="8" align-self="center" align="right">
-              <v-btn rounded x-small text class="purple lighten-2 ma-2" v-on:click="sign_up = true">Δημιουργία Λογαρισμού</v-btn>
-              <v-btn rounded small class="ma-2 purple darken-2" v-on:click="sign_in = true">Σύνδεση</v-btn>
+              <v-div v-if="!connected">
+                <v-btn rounded x-small text class="purple lighten-2 ma-2" v-on:click="sign_up = true">Δημιουργία Λογαρισμού</v-btn>
+                <v-btn rounded small class="ma-2 purple darken-2" v-on:click="sign_in = true">Σύνδεση</v-btn>
+              </v-div>
+              <div v-if="connected">
+                <router-link to="/user-profile/personal-info" class="white--text" style="text-decoration: none;">
+                  <v-icon small class="mr-2">fas fa-user</v-icon>
+                  User Name
+                </router-link>
+                <v-menu bottom left offset-y>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn dark icon v-bind="attrs" v-on="on">
+                      <v-icon>mdi-dots-vertical</v-icon>
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item link to="/user-profile/personal-info">Προσωπικά Στοιχεία</v-list-item>
+                    <v-list-item link to="oi-aithseis-mou">Λογαριασαμός</v-list-item>
+                    <v-list-item link to="ta-dikaiologhtika-mou">Τα Δικαιολογητικά μου</v-list-item>
+                    <v-list-item link to="logariasmos">Οι Αιτήσεις μου</v-list-item>
+                    <v-list-item link @click="log_off=true" class="red--text text--darken-2">Αποσύνδεση</v-list-item>
+                  </v-list>
+                </v-menu>
+              </div>
             </v-col>
             <v-divider vertical></v-divider>
             <v-col cols="2" align-self="center" align="center">
@@ -30,8 +52,20 @@
             </v-col>
           </v-row>
         </v-col>
-          
       </v-row>
+      <v-dialog v-model="log_off" width="40%">
+        <v-card>
+          <v-card-title class="red--text text--darken-2">Αποσύνδεση</v-card-title>
+          <v-card-text>
+            Είστε σίγουροι ότι θέλετε να αποσυνδεθείτε από τον λογαρισμό σας?
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn class="red darken-2 white--text" @click="connected=false">Αποσύνδεση</v-btn>
+            <v-spacer></v-spacer>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-app-bar>
 
     <v-main>
@@ -79,6 +113,9 @@ export default {
   },
   data: function(){
     return {
+      log_off: false,
+      usr_menu: false,
+      connected: true,
       sign_in: false,
       sign_up: false,
       logo: require("./assets/logo_doatap.png"),
