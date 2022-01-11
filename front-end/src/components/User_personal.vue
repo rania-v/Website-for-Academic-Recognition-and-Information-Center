@@ -6,15 +6,18 @@
                 <v-btn v-if="edit" fab color="indigo" class="white--text" small><v-icon small>mdi-pencil</v-icon></v-btn>
             </v-card-title>
             <v-card-text class="d-flex">
-                <v-col >
-                    <v-text-field label="Όνομα" ></v-text-field>
+                <v-spacer></v-spacer>
+                <v-col cols='3'>
+                    <v-text-field label="Όνομα" style="font-size:90%"></v-text-field>
                     <v-text-field label="Επώνυμο"></v-text-field>
                     <v-text-field label="Πατρώνυμο"></v-text-field>
                     <v-text-field label="Μητρώνυμο"></v-text-field>
-                    <v-select label="Φύλλο"></v-select>
                 </v-col>
-                <v-divider vertical></v-divider>
-                <v-col >
+                <v-spacer></v-spacer>
+                <!-- <v-divider vertical></v-divider> -->
+                <v-spacer></v-spacer>
+                <v-col cols='3'>
+                    <v-select label="Φύλλο"></v-select>
                     <v-autocomplete label="Χώρα Γέννησης" v-model="user.birth_country" :items="countries" item-value="country" item-text="country" clearable></v-autocomplete>
                     <v-autocomplete label="Πόλη Γέννησης" v-model="user.birth_city" :items="countries" item-text="city" item-value="city"></v-autocomplete>
                     <v-text-field dense :color="color" v-model="user.birthdate" readonly persistent-hint hint="Επιλέξτε πρώτα χρονολογία, μετά μήνα και τέλος ημέρα γέννησης" label="Ημερομηνία Γέννησης" v-on:click="picker=true"></v-text-field>
@@ -22,16 +25,19 @@
                         <v-date-picker v-model="user.birthdate" min="1950-01-01" max="2020-01-01"></v-date-picker>
                     </v-dialog>
                 </v-col>
-                <v-divider vertical></v-divider>
-                <v-col>
+                <v-spacer></v-spacer>
+                <!-- <v-divider vertical></v-divider> -->
+                <v-spacer></v-spacer>
+                <v-col cols='3'>
                     <v-autocomplete label="Χώρα διαμονής"></v-autocomplete>
                     <v-text-field label="Διεύθυνση Κατοικίας"></v-text-field>
                     <v-text-field label="Τ.Κ."></v-text-field>
 
                     <v-text-field label="ΑΦΜ"></v-text-field>
                 </v-col>
+                <v-spacer></v-spacer>
             </v-card-text>
-                        <v-card-title class="indigo--text">Στοιχεία Εοικοινωνίας</v-card-title>
+                        <v-card-title class="indigo--text">Στοιχεία Επικοινωνίας</v-card-title>
                         <v-card-text>
 
                 <v-col cols="4">

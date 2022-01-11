@@ -32,10 +32,10 @@ export default ({
         return {
             nav_dr:null,
             sections: [
-                {name: 'Προσωπικά Στοιχεία', icon: 'fas fa-user-circle', route:'/user-profile/personal-info'},
-                {name: 'Λογαριασαμός', icon: 'fas fa-clipboard-list', },
-                {name: 'Τα Δικαιολογητικά μου', icon: 'fas fa-book', route:'/user-profile/ta-dikaiologhtika-mou'},
-                {name: 'Οι Αιτήσεις μου', icon: 'fas fa-file-alt', route:'/user-profile/oi-aithseis-mou'},
+                {name: 'Προσωπικά Στοιχεία', icon: 'fas fa-user-circle', route:'personal-info'},
+                {name: 'Λογαριασαμός', icon: 'fas fa-clipboard-list', route: 'Logariasmos'},
+                {name: 'Τα Δικαιολογητικά μου', icon: 'fas fa-book', route:'ta-dikaiologhtika-mou'},
+                {name: 'Οι Αιτήσεις μου', icon: 'fas fa-file-alt', route:'oi-aithseis-mou'},
                 // {name: 'Ενημερώσεις', icon: 'fas fa-bell'},
             ],user: {
                 photo: photo_,

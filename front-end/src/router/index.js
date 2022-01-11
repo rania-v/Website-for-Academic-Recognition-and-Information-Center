@@ -10,6 +10,7 @@ import UserProfile from '../views/User_Profile.vue'
 import UserPersonal from '../components/User_personal.vue'
 import MyAithseis from '../components/Aithseis_mou.vue'
 import Dikaiologhtika from '../components/Dikaiologhtika.vue'
+import Logariasmos from '../components/Logariasmos.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -67,9 +68,13 @@ const routes = [
       {
         path: '/user-profile/ta-dikaiologhtika-mou',
         name: 'ta-dikaiologhtika-mou',
-        component: Dikaiologhtika,
+        component: Dikaiologhtika
       },
-      
+      {
+        path: '/user-profile/logariasmos',
+        name: 'logariasmos',
+        component: Logariasmos
+      },
     ]
   },
 ]
