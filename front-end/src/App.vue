@@ -15,14 +15,14 @@
                 <v-btn rounded x-small text class="purple lighten-2 ma-2" v-on:click="sign_up = true">Δημιουργία Λογαρισμού</v-btn>
                 <v-btn rounded small class="ma-2 purple darken-2" v-on:click="sign_in = true">Σύνδεση</v-btn>
               </v-div>
-              <div v-if="connected">
+              <div v-if="user!=null">
                 <router-link to="/user-profile/personal-info" class="white--text" style="text-decoration: none;">
                   <v-icon small class="mr-2">fas fa-user</v-icon>
-                  User Name
+                  {{user.name}}
                 </router-link>
                 <v-menu bottom left offset-y>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn dark icon v-bind="attrs" v-on="on">
+                    <v-btn dark icon v-bind="attrs" v-on="on" medium>
                       <v-icon>mdi-dots-vertical</v-icon>
                     </v-btn>
                   </template>
@@ -101,6 +101,7 @@
 </style>
 
 <script>
+import UserService from './UserService'
 
 import SignIn from "./components/SignIn.vue"
 import SignUp from "./components/SignUp.vue"
@@ -113,6 +114,7 @@ export default {
   },
   data: function(){
     return {
+      user: null,
       log_off: false,
       usr_menu: false,
       connected: true,
@@ -124,13 +126,30 @@ export default {
       Sections: [ 
         {name: "Αρχική", route: "/"},
         {name: "Αναγνώριση", route: "/Anagnwrish"},
-        { name: "Αίτηση", route: "/Aithsh"},
-        { name: "Ενημέρωση", route: "/Enhmerwsh"},
+        // { name: "Αίτηση", route: "/Aithsh"},
+        // { name: "Ενημέρωση", route: "/Enhmerwsh"},
         {name: "FAQ", route: "/FAQ"},
         { name: "Επικοινωνία", route: "/Epikoinwnia"}
       ],
 
     }
+  },
+  methods: {
+    async con() {
+            // console.log("ok");
+            // console.log("vue", this.mail, this.password)
+            try {
+                const u = await UserService.connected()
+                this.user = u.data
+                this.connected = true;
+                return
+            } catch (err) {
+                // swal("Error", "Something Went Wrong", "error");
+                console.log("lalal");
+            }
+                this.user = null
+                this.connected = false;
+        }
   }
 };
 </script>

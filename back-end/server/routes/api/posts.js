@@ -30,7 +30,7 @@ router.delete('/:id', async (req, res) => {
 
 async function loadPostsCollection() {
     const client = await mongodb.MongoClient.connect
-    ("mongodb+srv://team15:doatapeam1@cluster0.mweve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+    ('mongodb+srv://team15:doatapeam1@cluster0.mweve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
         useNewUrlParser: true
     });
 

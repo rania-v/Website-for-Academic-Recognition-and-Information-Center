@@ -1,9 +1,11 @@
 <template>
-    <v-card elevation="15">
+<v-container>
+
+    <v-card elevation="15" v-if="!created">
         <v-card-title class="indigo--text justify-center">Δημιουργία Λογαρισμού</v-card-title>
         <v-card-text class="text-center pb-0">
             όλα τα παρακάτω στοιχεία είναι απαραίτητα
-            <v-form v-model="valid" ref="form" id="reg-form" @submit="registerUser()" >
+            <v-form v-model="valid" ref="form" id="reg-form" >
                 <v-row class="ma-0">
                     <v-col>
                         <v-text-field dense :color="color" v-model="first_name" label="Όνομα" :rules="required_rule" required></v-text-field>
@@ -19,11 +21,12 @@
                 </v-row>
                 <v-row justify="center" class="ma-0">
                     <v-col>
-                        <v-text-field dense :color="color" v-model="birthdate" readonly persistent-hint hint="Επιλέξτε πρώτα χρονολογία, μετά μήνα και τέλος ημέρα γέννησης" label="Ημερομηνία Γέννησης" v-on:click="picker=true"></v-text-field>
+                    <v-text-field  label="Ημερομηνία Γέννησης" type="date" format="DD/MM/YYYY"></v-text-field>
+                        <!-- <v-text-field dense :color="color" v-model="birthdate"  :rules="required_rule" readonly persistent-hint hint="Επιλέξτε πρώτα χρονολογία, μετά μήνα και τέλος ημέρα γέννησης" label="Ημερομηνία Γέννησης" v-on:click="picker=true"></v-text-field> -->
                     </v-col>
-                    <v-dialog v-model="picker" width="25%">
+                    <!-- <v-dialog v-model="picker" width="25%">
                         <v-date-picker v-model="birthdate" min="1950-01-01" max="2020-01-01"></v-date-picker>
-                    </v-dialog>
+                    </v-dialog> -->
                     <v-col>
                         <v-select dense :color="color" v-model="gender" :items="items_gender" label="Φύλο"></v-select>
                     </v-col>
@@ -50,22 +53,30 @@
             <!-- <v-spacer></v-spacer> -->
             <v-btn class="indigo--text" dark text @click="reset">Clear</v-btn>
             <v-spacer></v-spacer>
-            <v-btn :class="color" dark depressed  @click="validate">Sign In</v-btn>
+            {{valid}}
+            <v-btn :class="color" depressed  v-on:click="registerUser" :disabled="!valid" >Sign In</v-btn>
         </v-card-actions>
     </v-card>
+    <v-alert v-if="created" type="success">
+        Νέος Χρήστης Δημιουργήθηκε με επιτυχία
+    </v-alert>
+</v-container>
 </template>
 
 <script>
+import UserServices from '../UserService'
+
 export default {
     name: 'SignUp',
     data : function(){
       return{
+          created: false,
         color: 'indigo',
-        valid:true,
-        first_name: null,
-        last_name:null,
-        mail: null,
-        birthdate: null,
+        valid: false,
+        first_name: '',
+        last_name:'',
+        mail: '',
+        birthdate: '',
         show_pass1: false,
         show_pass2: false,
         password: null,
@@ -76,31 +87,29 @@ export default {
       }
     },
     methods: {
-        validate () {
-            this.$refs.form.validate()
-            // this.$refs.form.submit()
-        },
         reset() {
             this.$refs.form.reset()
 
         },
-        async registerUser(event) {
-            const mail = this.mail.value
-            const password = this.password.value
-            event.preventDefault()
-            const result = await fetch('/api/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                boody: JSON.stringify({
-                    mail,
-                    password
-                })
-            }).then(res => res.json())
-            this.first_name = 'OK'
-            console.log(result)
-        }
+        async registerUser() {
+            // if( this.conf_pass == '' || this.first_name=='' || this.last_name=='' || this.mail=='' || this.birthdate=='') {
+            //     this.valid = false;
+            //     return 
+            // }else if(this.password != this.conf_pass) {
+            //     this.valid = false;
+            //     return
+            // } else {
+                try {
+                    await UserServices.createUser(this.last_name, this.password, this.mail);
+                    this.created = true;
+                }catch(err) {
+                    this.error = err.message;
+                }
+            // }
+            this.conf_pass=''
+            this.first_name=''
+            this.valid=false;
+        },      
     },
     
 }

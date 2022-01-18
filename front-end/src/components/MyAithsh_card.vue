@@ -6,7 +6,7 @@
             <v-icon v-if="appl.status=='Απορρίφθηκε'" color="red darken-3" small>far fa-times-circle</v-icon>
             <strong> {{appl.status}} </strong>
         </v-card-subtitle>
-    <v-dialog v-model="open" width="50%">
+    <v-dialog v-model="open" width="60%">
        <v-card>
             <v-card-title>Αίτηση {{appl.id}}</v-card-title>
             <v-card-text>
@@ -36,8 +36,6 @@
                         </v-list>
                     </v-col>
                     <v-col>
-                        {{selected}}
-
                         <RejectionReasons :err_id="selected"/>
                     </v-col>
                 </v-row>
@@ -57,9 +55,9 @@ import RejectionReasons from '../components/Rejection_reasons.vue'
 
 export default ({
     name: 'MyAithsh_Card',
-    components: [
+    components: {
         RejectionReasons,
-    ],
+    },
     props: [
        'appl'
     ],

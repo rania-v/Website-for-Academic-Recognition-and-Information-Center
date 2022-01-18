@@ -11,6 +11,7 @@ import UserPersonal from '../components/User_personal.vue'
 import MyAithseis from '../components/Aithseis_mou.vue'
 import Dikaiologhtika from '../components/Dikaiologhtika.vue'
 import Logariasmos from '../components/Logariasmos.vue'
+import Admin from '../views/Admin.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -76,6 +77,11 @@ const routes = [
         component: Logariasmos
       },
     ]
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin
   },
 ]
 

@@ -1,8 +1,5 @@
 <template>
     <v-container fluid>
-        <v-card-subtitle>
-            Συμπληρώστε τα στοιχεία του τίτλου σπουδών προς αναγνώριση
-        </v-card-subtitle>
         <v-card-text>
             <v-row >
                 <v-col>

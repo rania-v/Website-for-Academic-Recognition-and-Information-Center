@@ -1,6 +1,23 @@
 <template>
   <v-container fluid>
     <v-container fluid class="d-flex" max-height="20%">
+     
+     
+     
+      <!-- <v-row>
+        <v-col>
+          <h1>Posts</h1>
+          <p v-if="error">{{error}}</p>
+          <div v-for="post in posts" :key="post._id">
+            {{post.text}}
+
+          </div>
+          {{posts}}
+        </v-col>
+      </v-row> -->
+      
+      
+      
       <v-row>
         <v-col cols="3">
           <v-card height="100%" class="pa-3 d-flex align-center rounded-xl" flat color="indigo lighten-1" dark>
@@ -90,6 +107,7 @@
 </template>
 
 <script>
+// import PostService from '../PostService';
 
 import SignIn from "../components/SignIn.vue"
 import SignUp from "../components/SignUp.vue"
@@ -102,6 +120,11 @@ import SignUp from "../components/SignUp.vue"
   },
     data : function(){
       return{
+        posts: [],
+        error:'',
+        text: '',
+
+
         signin:false,
         signup:true,
         item_country: null,
@@ -110,6 +133,13 @@ import SignUp from "../components/SignUp.vue"
           {country: "B", city:"Bc", uni:["Bu", "Bu2"], degree:"Bd"}
         ]
       }
-    }
+    },
+    // async created() {
+    //   try {
+    //     this.posts = await PostService.getPosts();
+    //   }catch(err) {
+    //     this.error = err.message;
+    //   }
+    // }
   }
 </script>
