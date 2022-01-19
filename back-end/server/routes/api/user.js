@@ -3,10 +3,17 @@ const mongodb = require('mongodb');
 
 const router = express.Router();
 
-//Get User
+// Get All Users
 router.get('/', async (req, res) => {
     const users = await loadAllUsers();
     res.send(await users.find({}).toArray());
+})
+
+// Get User
+router.post('/getuser', async (req, res) => {
+    const users = await loadAllUsers();
+    const user = await users.find({"_id": mongodb.ObjectID(req.body.id)}).toArray()
+    res.send(user[0]);
 })
 
 //Add User
@@ -17,6 +24,26 @@ router.post('/', async(req, res) => {
         name: req.body.name,
         email: req.body.name,
         password: req.body.password,
+        personal: {
+            birthdate: null,
+            patronym: null,
+            mothers_name: null,
+            gender: null,
+            birth_country: null,
+            birth_city: null,
+            residence_country: null,
+            res_addr: null,
+            tk: null,
+            afm: null
+        },
+        conntact_details: {
+            tel: null,
+        },
+        applications: {
+            completed: [],
+            submited: [],
+            saved: []
+        }
     });
     res.status(201).send();
 })
@@ -46,6 +73,61 @@ router.post('/login', async (req, res, next) => {
     }
     res.status(201).send();
 });
+
+// Update User
+router.post('/update', async(req, res) => {
+    console.log("skata");
+    const users = await loadAllUsers();
+    console.log(req.body)
+    const u = await users.updateOne(
+        {"_id": mongodb.ObjectID(req.body.id)},
+        {
+            $set: {
+                name: req.body.name,
+                // email: req.body.name,
+                // password: req.body.password,
+                personal: {
+                    birthdate: req.body.birthdate,
+                    patronym: req.body.patronym,
+                    mothers_name: req.body.mothers_name,
+                    gender: req.body.gender,
+                    birth_country: req.body.birth_country,
+                    birth_city: req.body.birth_city,
+                    residence_country: req.body.residence_country,
+                    res_addr: req.body.res_addr,
+                    tk: req.body.tk,
+                    afm: req.body.afm
+                }
+            }
+        }
+    );
+    console.log(req.params.id);
+    console.log(u);
+    res.send(u);
+    // res.status(201).send();
+})
+
+
+// UPdate User Contact Info
+router.post('/update/', async(req, res) => {
+    console.log("skata");
+    const users = await loadAllUsers();
+    const u = await users.updateOne(
+        {"_id": mongodb.ObjectID(req.body.id)},
+        {
+            $set: {
+                contact: {
+                    mail: req.body.mail,
+                    tel: req.body.tel
+                }
+            }
+        }
+    );
+    console.log(req.params.id);
+    console.log(u);
+    // res.send(u);
+    res.status(201).send();
+})
 
 async function loadAllUsers() {
     const client = await mongodb.MongoClient.connect

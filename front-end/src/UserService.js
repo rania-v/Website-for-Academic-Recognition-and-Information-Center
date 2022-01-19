@@ -6,7 +6,7 @@ var U = null;
 
 class UserServices {
     // Get User
-    static async getUser() {
+    static async getAllUsers() {
         const res = await axios.get(url);
             try {
                 
@@ -15,6 +15,18 @@ class UserServices {
                             ...user,
                             createdAt: new Date(user.createdAt)
                         }))
+            }catch(err) {
+                return err;
+            }
+    }
+
+    static async getUser(id) {
+        const get = "getuser"
+        const res = await axios.post(`${url}${get}`, {
+            id: id
+        });
+            try {
+                return res.data;
             }catch(err) {
                 return err;
             }
@@ -38,6 +50,27 @@ class UserServices {
         const u = axios.post(`${url}/login`, {
             email: email,
             password: password
+        });
+        U = u;
+        return u;
+    }
+
+    //Update Personal Info
+    static updateUser(id, n, bd, pn, mn, g, bcntr, bct, rcntr, rad, tk, afm) {
+        console.log(n)
+        const u = axios.post(`${url}/update`, {
+            id: id,
+            name: n,
+            birthdate: bd,
+            patronym: pn,
+            mothers_name: mn,
+            gender: g,
+            birth_country: bcntr,
+            birth_city: bct,
+            residence_country: rcntr,
+            res_addr: rad,
+            tk: tk,
+            afm: afm
         });
         U = u;
         return u;

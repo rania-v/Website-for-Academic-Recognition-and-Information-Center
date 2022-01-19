@@ -54,7 +54,7 @@
             <v-btn class="indigo--text" dark text @click="reset">Clear</v-btn>
             <v-spacer></v-spacer>
             {{valid}}
-            <v-btn :class="color" depressed  v-on:click="registerUser" :disabled="!valid" >Sign In</v-btn>
+            <v-btn :class="color" depressed  v-on:click="registerUser" :disabled="!valid" >Sign Un</v-btn>
         </v-card-actions>
     </v-card>
     <v-alert v-if="created" type="success">
