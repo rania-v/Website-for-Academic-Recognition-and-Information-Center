@@ -76,7 +76,6 @@ router.post('/login', async (req, res, next) => {
 
 // Update User
 router.post('/update', async(req, res) => {
-    console.log("skata");
     const users = await loadAllUsers();
     console.log(req.body)
     const u = await users.updateOne(
@@ -101,14 +100,33 @@ router.post('/update', async(req, res) => {
             }
         }
     );
-    console.log(req.params.id);
+    // console.log(req.params.id);
+    // console.log(u);
+    res.send(u);
+    // res.status(201).send();
+})
+
+// Update Password and email
+router.post('/update', async(req, res) => {
+    console.log("update");
+    const users = await loadAllUsers();
+    console.log(req.body)
+    const u = await users.updateOne(
+        {"_id": mongodb.ObjectID(req.body.id)},
+        {
+            $set: {
+                email: req.body.mail,
+                password: req.body.password
+            }
+        }
+    );
     console.log(u);
     res.send(u);
     // res.status(201).send();
 })
 
 
-// UPdate User Contact Info
+// Update User Contact Info
 router.post('/update/', async(req, res) => {
     console.log("skata");
     const users = await loadAllUsers();

@@ -3,13 +3,13 @@
         <v-card-text>
             <v-row >
                 <v-col>
-                    <v-radio-group v-model="typos_sp" mandatory label="Τύπος Φοίτησης">
+                    <v-radio-group v-model="stoixeia_titlou.type" mandatory label="Τύπος Φοίτησης">
                         <v-radio label="Συμβατικός" value="1" style="font-size: 90%"></v-radio>
                         <v-radio label="Εξ Αποστάσεως αποκλειστικά στο εξωτερικό" value="2"></v-radio>
                         <v-radio label="Εξ Αποστάσεως, με μέρος να έγινε στην Ελλάδα" value="3"></v-radio>
                     </v-radio-group>
                 </v-col>
-                <v-col v-if="typos_sp==3">
+                <v-col v-if="stoixeia_titlou.type==3">
                     <v-list>
                         <v-subheader height="auto">Δηλώστε Πόλη και Ίδρυμα της Ελλάδας που έγινε μέρος της διδασκαλίας</v-subheader>
                         <v-list-item>
@@ -27,17 +27,17 @@
             </v-card-subtitle>
             <v-row>
                 <v-col>
-                    <v-autocomplete label="Πανεπιστήμιο" :items="unis"/>
-                    <v-autocomplete label="Τίτλος Σπουδών" :items="titloi"/>
-                    <v-text-field  label="Πιστωτικές Μονάδες" :rules="pist_mon_rules" type="number"></v-text-field>
+                    <v-autocomplete label="Πανεπιστήμιο" :items="unis" v-model="stoixeia_titlou.uni"/>
+                    <v-autocomplete label="Τίτλος Σπουδών" :items="titloi" v-model="stoixeia_titlou.title"/>
+                    <v-text-field  label="Πιστωτικές Μονάδες" :rules="pist_mon_rules" type="number" v-model="stoixeia_titlou.credits"></v-text-field>
                 </v-col>
                 <!-- <v-col>
                     <v-text-field dense label="Χώρα Σπουδών"></v-text-field>
                 </v-col> -->
                 <v-col>
-                    <v-text-field  label="Ημερομηνία Εγγραφής" type="date" format="DD/MM/YYYY"></v-text-field>
-                    <v-text-field  label="Ημερομηνία Αποφοίτησης" :rules="pist_mon_rules" type="date"></v-text-field>
-                    <v-text-field  label="Προβλεπόμενα Έτη Σπουδών" :rules="eth_rules" type="number"></v-text-field>
+                    <v-text-field  label="Ημερομηνία Εγγραφής" type="date" format="DD/MM/YYYY" v-model="stoixeia_titlou.eggrafhpe"></v-text-field>
+                    <v-text-field  label="Ημερομηνία Αποφοίτησης" :rules="pist_mon_rules" type="date" v-model="stoixeia_titlou.apofoitisi"></v-text-field>
+                    <v-text-field  label="Προβλεπόμενα Έτη Σπουδών" :rules="eth_rules" type="number" v-model="stoixeia_titlou.eth"></v-text-field>
                 </v-col>
             </v-row>
             <v-divider></v-divider>
@@ -64,10 +64,10 @@
             </v-card-subtitle>
             <v-row>
                 <v-col>
-                    <v-autocomplete label="Τμήμα Πανεπιστημίου" :items="unis"/>
+                    <v-autocomplete label="Τμήμα Πανεπιστημίου" :items="unis" v-model="stoixeia_titlou.ant_me_aei"/>
                 </v-col>
                 <v-col>
-                    <v-autocomplete label="Τμήμα ΤΕΙ" :items="unis"/>
+                    <v-autocomplete label="Τμήμα ΤΕΙ" :items="unis" v-model="stoixeia_titlou.ant_me_tei"/>
                 </v-col>
             </v-row>
         </v-card-text>
@@ -77,6 +77,7 @@
 <script>
 export default ({
     name: 'StoixeiaTitlou',
+    props: ['stoixeia_titlou'],
     data: function() {
         return {
             date_1: null,

@@ -10,7 +10,7 @@
                     </v-col>
                     <v-col cols="4" class="d-flex align-center">
                         <v-btn v-if="!ch_mail" @click="ch_mail=true" small outlined color="blue darken-2" min-width="100%">Αλλαγή e-mail</v-btn>
-                        <v-btn v-if="ch_mail" small elevation="0" color="green darken-2 white--text" min-width="100%" @click="ch_mail=false, save_mail=true">Αποθήκευση νέου Κωδικού</v-btn>
+                        <v-btn v-if="ch_mail" small elevation="0" color="green darken-2 white--text" min-width="100%" @click="ch_mail=false, save_mail=true" v-on:click="updatePM">Αποθήκευση νέου Κωδικού</v-btn>
                     </v-col>
                     <v-alert v-if="save_mail" type="success" class=" text--darken-2" dense text>
                         Το e-mail άλλαξε επιτυχώς
@@ -27,7 +27,7 @@
                     </v-col>
                     <v-col cols="4"  class="d-flex align-center">
                         <v-btn v-if="!ch_pass" small outlined color="blue darken-2" min-width="100%" @click="ch_pass=true">Αλλαγή Κωδικού</v-btn>
-                        <v-btn v-if="ch_pass" small elevation="0" color="green darken-2 white--text" min-width="100%" @click="ch_pass=false, save_pass=true">Αποθήκευση νέου Κωδικού</v-btn>
+                        <v-btn v-if="ch_pass" small elevation="0" color="green darken-2 white--text" min-width="100%" @click="ch_pass=false, save_pass=true" v-on:click="updatePM">Αποθήκευση νέου Κωδικού</v-btn>
                     </v-col>
                     <v-alert v-if="save_pass && !ch_pass" type="success" class=" text--darken-2" dense text>
                         Ο κωδικός πρόσβασης άλλαξε επιτυχώς
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import UserService from '../UserService'
 
 export default ({
     name: 'Logariasmos',
@@ -65,5 +66,24 @@ export default ({
             }
         }
     },
+    methods: {
+        async updatePM() {
+            try{
+            // console.log(this.user.name);
+                await UserService.updatePassMail(
+                    // this.user.id,
+                    "61e8507b58e003424f00bc67",
+                    this.usr.mail,
+                    this.usr.password,
+
+                );
+            }catch(err) {
+                this.error = err.message;
+            }
+        }
+    },
+    async created(){
+
+    }
 })
 </script>

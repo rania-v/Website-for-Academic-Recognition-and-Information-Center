@@ -1,6 +1,7 @@
 <template>
     <v-container>
-        <v-textarea label="Προαιρετικά Σχόλια-Παρατηρήσεις" outlined></v-textarea>
+        {{sxolia}}
+        <v-textarea label="Προαιρετικά Σχόλια-Παρατηρήσεις" outlined v-model="sxolia"></v-textarea>
     </v-container>
 </template>
 
@@ -8,9 +9,6 @@
 
 export default ({
     name: 'Ypovolh',
-    data: function() {
-        return {
-        }
-    }
+    props: ['sxolia']
 })
 </script>

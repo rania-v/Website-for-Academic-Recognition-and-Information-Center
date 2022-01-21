@@ -86,16 +86,18 @@
                     </v-card-actions> -->
                 </v-stepper-content>
                 <v-stepper-content step="2">
+                    {{application.vasiko}}
                     <v-card-subtitle>Συνμπληρώστε τα στοιχεία του Βασικού τίτλου που θέλετε για Αναγνώριση</v-card-subtitle>
-                    <StoixeiaTitlou :edit="false"/>
+                    <StoixeiaTitlou :stoixeia_titlou="application.vasiko"/>
                 </v-stepper-content>
                 <v-stepper-content step="3">
+                    {{application.metaptuxiako}}
                     <v-card-subtitle>Συνμπληρώστε τα στοιχεία του Μεταπτυχιακόυ τίτλου για Συνεκτίμηση</v-card-subtitle>
-                    <StoixeiaTitlou :edit="false"/>
+                    <StoixeiaTitlou :stoixeia_titlou="application.metaptuxiako"/>
                 </v-stepper-content>
                 <v-stepper-content step="4">
                     <v-card-subtitle>Συνμπληρώστε τα στοιχεία του Μεταπτυχιακόυ τίτλου για Συνεκτίμηση</v-card-subtitle>
-                    <UserPersonal :edit="false"/>
+                    <UserPersonal :edit="false" :personal="application.personal"/>
                 </v-stepper-content>
                 <v-stepper-content step="5">
                     <v-card-subtitle>Επιλέξτε Δικαιολογητικά</v-card-subtitle>
@@ -103,7 +105,8 @@
                 </v-stepper-content>
                 <v-stepper-content step="6">
                     <v-card-subtitle>Μπορείτε να συμπληρώσετε σχόλια που θα ληφθούν υπ'όψιν κατά τον Προέλεγχο της αίτησής σας</v-card-subtitle>
-                    <Ypovolh/>
+                    {{application.sxolia}}
+                    <Ypovolh :sxolia="application.sxolia"/>
                     <v-row>
                         <v-spacer></v-spacer>
                         <v-checkbox label="Συναινώ στην μπλαμπλαμπλα" v-model="consent"></v-checkbox>
@@ -111,7 +114,8 @@
                     </v-row>
                     <v-row>
                         <v-spacer></v-spacer>
-                        <v-btn class="mb-3 green darken-3 white--text" :disabled='!consent' @click="sub=true">Υποβολή</v-btn>
+                        <v-btn class="mb-3 mr-3 blue--text text--darken-4 blue lighten-4"  rounded outlined :disabled='!consent' @click="save">Αποθήκευση</v-btn>
+                        <v-btn class="mb-3 ml-3 green darken-3 white--text" :disabled='!consent' elevation="0" @click="submt">Υποβολή</v-btn>
                         <v-spacer></v-spacer>
                     </v-row>
                 </v-stepper-content>
@@ -140,6 +144,9 @@ import UserPersonal from '../components/User_personal.vue'
 import StoixeiaTitlou from '../components/Stoixeia_titlou.vue'
 import EpiloghDik from '../components/Epilogh_Dikaiologhtika.vue'
 import Ypovolh from '../components/Ypovolh.vue'
+
+import ApplicationService from '../ApplicationService'
+
 export default ({
     name: 'NweApplicaton',
     components: {
@@ -163,11 +170,89 @@ export default ({
                 {id: 'Πανεπιστήμιο',value: '1'},
                 {id: 'ΤΕΙ',value: '2'},
             ],
+            application: {
+                genika: {
+                    status: "",
+                    type: "",
+                    st_level: "",
+                    antistoixia: "",
+                    aei: "",
+                    tei: "",
+                    sunektimhsh: "",
+                    bathm_ant: "",
+                },
+                vasiko: {
+                    type: "",
+                    uni: "",
+                    title: "",
+                    credits: "",
+                    eggrafh: "",
+                    apofoitish: "",
+                    eth: "",
+                    ant_me_aei: "",
+                    ant_me_tei: ""
+                },
+                metaptuxiako: {
+                    type: "",
+                    uni: "",
+                    title: "",
+                    credits: "",
+                    eggrafh: "",
+                    apofoitish: "",
+                    eth: "",
+                    ant_me_aei: "",
+                    ant_me_tei: ""
+                },
+                personal: {
+
+                },
+                diakiologhtika: {
+                    paravolo: "",
+                    identity: "",
+                    dhlwsh: "",
+                    vasiko: {
+                        ptuxio: "",
+                        pistopoihsh: ""
+                    },
+                    metaptyxiako: {
+                        ptyxio: "",
+                        ergasia: "",
+                        pistopoihsh: ""
+                    }
+                },
+                sxolia: "nonnee"
+            }
         }
     },
     methods: {
         submited(e) {
             this.sub = e
+        },
+        async save() {
+            this.application.genika.status = "saved"
+            this.save = true;
+            try {
+                console.log(this.application);
+                await ApplicationService.createApplication(
+                    this.application
+                );
+            }catch(err) {
+                this.error = err.message;
+                console.log(this.error)
+            }
+        },
+        async submt() {
+            this.application.genika.status = "submited"
+            this.sub = true;
+            try {
+                console.log(this.application);
+                await ApplicationService.createApplication(
+                    this.application
+                );
+            }catch(err) {
+                this.error = err.message;
+                console.log(this.error)
+            }
         }
     }
 })

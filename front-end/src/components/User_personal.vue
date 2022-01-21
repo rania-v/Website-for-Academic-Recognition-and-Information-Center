@@ -59,7 +59,7 @@ import UserService from '../UserService'
 
 export default ({
     name:'UserPersonal',
-    props:['edit'],
+    props:['edit', {personal:{default: null}}],
     data: function() {
         return {
             gender: [

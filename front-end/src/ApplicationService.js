@@ -1,27 +1,27 @@
 import axios from 'axios';
-const url = 'http://localhost:5000/api/user/';
+const url = 'http://localhost:5000/api/applications/';
 
 
 var U = null;
-
-class UserServices {
+U;
+class ApplicationServices {
     // Get User
-    static async getAllUsers() {
+    static async getAllApplications() {
         const res = await axios.get(url);
             try {
                 
                 const data = res.data;
-                    return data.map(user => ({
-                            ...user,
-                            createdAt: new Date(user.createdAt)
+                    return data.map(appls => ({
+                            ...appls,
+                            createdAt: new Date(appls.createdAt)
                         }))
             }catch(err) {
                 return err;
             }
     }
 
-    static async getUser(id) {
-        const get = "getuser"
+    static async getApplication(id) {
+        const get = "getapplication"
         const res = await axios.post(`${url}${get}`, {
             id: id
         });
@@ -32,28 +32,17 @@ class UserServices {
             }
     }
 
-    static connected() {
-        return U;
-    }
-
     // Create User
-    static createUser(name, password, email) {
+    static createApplication(appl) {
         return axios.post(url, {
-            name: name,
-            email: email,
-            password: password
+            // status: appl.status,
+            // type: appl.type,
+            // st_level: appl.st_level,
+            // antistoixia: appl.antistoixia,
+            application: appl
         });
     }
 
-    // Login
-    static loginUser(email, password) {
-        const u = axios.post(`${url}/login`, {
-            email: email,
-            password: password
-        });
-        U = u;
-        return u;
-    }
 
     //Update Personal Info
     static updateUser(id, n, bd, pn, mn, g, bcntr, bct, rcntr, rad, tk, afm) {
@@ -94,4 +83,4 @@ class UserServices {
     }
 }
 
-export default UserServices;
+export default ApplicationServices;

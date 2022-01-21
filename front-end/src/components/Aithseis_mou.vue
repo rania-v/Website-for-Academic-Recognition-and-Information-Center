@@ -1,11 +1,7 @@
 <template>
     <v-container fluid>
         <v-card flat>
-            <v-card-title class="indigo--text">Οι Αιτήσεις μου
-                <v-spacer></v-spacer>
-                <v-card-subtitle>Νέα Άιτηση</v-card-subtitle>
-                <v-btn fab color="indigo" class="white--text" small v-on:click="new_appl=true"><v-icon small>fas fa-plus</v-icon></v-btn>
-            </v-card-title>
+            <v-card-title class="indigo--text">Οι Αιτήσεις μου</v-card-title>
             <v-tabs grow color="indigo" v-model="selected_tab">
                 <v-tab v-for="i in tabs" :key="i">{{i}}</v-tab>
             </v-tabs>
@@ -27,9 +23,7 @@
                     </v-col>
                 </v-row>
             </v-card-text>
-            <v-dialog v-model="new_appl" width="80%">
-                <NewApplicaton/>
-            </v-dialog>
+            
         </v-card>
     </v-container>
 </template>
@@ -37,14 +31,12 @@
 <script>
 import MyAithshCard from '../components/MyAithsh_card.vue'
 import SubmitedAithshCard from '../components/Submited_Aithsh_card.vue'
-import NewApplicaton from '../components/New_Application.vue'
 
 export default ({
     name:'MyAithseis',
     components: {
         MyAithshCard,
         SubmitedAithshCard,
-        NewApplicaton
     },
     data: function() {
         return {

@@ -39,6 +39,7 @@
 
 export default ({
     name: 'EpiloghDik',
+    props: ['dik'],
     data: function() {
         return {
             gen_dik: [
