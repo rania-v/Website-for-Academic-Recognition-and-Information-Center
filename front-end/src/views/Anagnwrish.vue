@@ -37,9 +37,9 @@ export default({
             search: null,
             nav_dr: null,
             items: [
-                {name: 'Η πορεία μιας αίτησης', icon: 'fas fa-user-circle', route:"/Anagnwrish/erothsh1"},
+                {name: 'Η πορεία μιας αίτησης', icon: 'fas fa-file-alt', route:"/Anagnwrish/erothsh1"},
                 {name: 'Αιτήματα υπέρβασης σειράς προτεραιότητας', icon: 'fas fa-file-alt', route:"/Anagnwrish/erothsh2"},
-                {name: 'Αιτήματα φορέων για επιβεβαίωση γνησιότητας πράξεων αναγνώρισης', icon: 'fas fa-book', route:"/Anagnwrish/erothsh3"},
+                {name: 'Αιτήματα φορέων για επιβεβαίωση γνησιότητας πράξεων αναγνώρισης', icon: 'fas fa-file-alt', route:"/Anagnwrish/erothsh3"},
             ],
         }
     },
