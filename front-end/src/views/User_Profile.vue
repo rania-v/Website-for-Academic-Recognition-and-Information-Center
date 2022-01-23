@@ -34,6 +34,7 @@
 import photo_ from '../assets/av.svg'
 import NewApplicaton from '../components/New_Application.vue'
 
+// import UserService from '../UserService'
 
 export default ({
     name: 'UserProfile',
@@ -58,5 +59,10 @@ export default ({
             }
         }        
     },
+    // async created() {
+    //     var u = UserService.U;
+    //     console.log(u)
+    //     this.user
+    // }
 })
 </script>

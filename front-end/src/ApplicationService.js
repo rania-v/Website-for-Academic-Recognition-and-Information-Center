@@ -13,7 +13,20 @@ class ApplicationServices {
                 const data = res.data;
                     return data.map(appls => ({
                             ...appls,
-                            createdAt: new Date(appls.createdAt)
+                            // createdAt: new Date(appls.createdAt)
+                        }))
+            }catch(err) {
+                return err;
+            }
+    }
+
+    static async getSubmitedApplications() {
+        const sub = 'submited'
+        const res = await axios.get(`${url}${sub}`);
+            try {
+                const data = res.data;
+                    return data.map(appls => ({
+                            ...appls,
                         }))
             }catch(err) {
                 return err;
@@ -32,53 +45,16 @@ class ApplicationServices {
             }
     }
 
-    // Create User
+    // Create Application
     static createApplication(appl) {
         return axios.post(url, {
-            // status: appl.status,
-            // type: appl.type,
-            // st_level: appl.st_level,
-            // antistoixia: appl.antistoixia,
-            application: appl
+            application: appl,
+            createdAt: new Date()
         });
     }
 
-
-    //Update Personal Info
-    static updateUser(id, n, bd, pn, mn, g, bcntr, bct, rcntr, rad, tk, afm) {
-        console.log(n)
-        const u = axios.post(`${url}/update`, {
-            id: id,
-            name: n,
-            birthdate: bd,
-            patronym: pn,
-            mothers_name: mn,
-            gender: g,
-            birth_country: bcntr,
-            birth_city: bct,
-            residence_country: rcntr,
-            res_addr: rad,
-            tk: tk,
-            afm: afm
-        });
-        U = u;
-        return u;
-    }
-
-    //Update Enmail and password
-    static updatePassMail(id, mail, pass) {
-        // console.log()
-        const u = axios.post(`${url}/update`, {
-            id: id,
-            mail: mail,
-            password: pass
-        });
-        U = u;
-        return u;
-    }
-
-    // Delete User
-    static deleteUser(id) {
+    // Delete Application
+    static deleteApplication(id) {
         return fetch.delete(`${url}${id}`);
     }
 }

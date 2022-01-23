@@ -3,7 +3,8 @@
         <v-row class="ma-3">
             <v-col cols='9'>
                 <v-card>
-                    <v-data-table :headers="cat" :items="applications" show-select v-model="selected" class="">
+                    <v-data-table :headers="cat" :items="applications" show-select v-model="selected">
+                        <!-- <template  v-slot:item="{}"> -->
                         <template  v-slot:item.open="{}">
                             <v-btn  x-small text class=""> <v-icon x-small class="indigo--text">fas fa-external-link-alt</v-icon> </v-btn>
                         </template>
@@ -21,60 +22,32 @@
 
 <script>
 
+import ApplicationService from '../ApplicationService'
+
 export default ({
     name: 'Admin',
     data: function() {
         return {
             selected: [],
             cat: [
-                {text: 'Αριθμός Αίτησης', icon: 'fas fa-hashtag', value:'id', class:"indigo white--text"},
-                {text: 'Ημερομηνία Υποβολής', icon: 'far fa-calendar-alt', value:'date', class:"indigo white--text"},
-                {text: 'Κωδικός Χρήστη/ΑΦΜ', icon:'far fa-user', value: 'afm', class:"indigo white--text"},
-                {text: 'Κατηγορία Αίτησης', icon:'far fa-clipboard', value: 'appl_cat', class:"indigo white--text"},
+                {text: 'Αριθμός Αίτησης', icon: 'fas fa-hashtag', value:'_id', class:"indigo white--text"},
+                {text: 'Ημερομηνία Υποβολής', icon: 'far fa-calendar-alt', value:'createdAt', class:"indigo white--text"},
+                {text: 'Κωδικός Χρήστη/ΑΦΜ', icon:'far fa-user', value: 'application.user_afm', class:"indigo white--text"},
+                {text: 'Κατηγορία Αίτησης', icon:'far fa-clipboard', value: 'application.genika.type', class:"indigo white--text"},
                 {text: 'Προεπισκόπηση', icon:'far fa-clipboard', value: 'open', sortable: false, align: 'center', class:"indigo white--text"},
             ],
-            applications: [
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-                { id: '1234', date: '01/01/21', afm: '98765432', appl_cat: 'Αναγνώριση Τίτλου', open: false},
-            ]
+            applications: [],
+        }
+    },
+    methods: {
+
+    },
+    async created() {
+        try {
+            this.applications = await ApplicationService.getSubmitedApplications()
+            console.log(this.applications)
+        }catch(err) {
+            this.error = err.message;
         }
     }
 })

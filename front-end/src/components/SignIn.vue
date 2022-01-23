@@ -45,6 +45,7 @@
 
 <script>
 import UserServices from '../UserService'
+// import store from '../store'
 
 export default {
     name: 'SignIn',
@@ -78,11 +79,19 @@ export default {
             try {
                 const u = await UserServices.loginUser(this.mail, this.password)
                 this.user = u.data
+            console.log('this.U is : ', this.user);
+                //  store.commit('LOGIN', this.user)
+                this.$store.commit('LOGIN', this.user)
+            // store.dispatch("login", u.data)
+            console.log('User is : ', this.$store.state.User);
                 this.connected = true;
+                if(this.user.is_admin == true)
+                    this.$router.push('/admin')
+                else this.$router.push('/user-profile')
                 return
             } catch (err) {
                 // swal("Error", "Something Went Wrong", "error");
-                console.log("lalal");
+                console.log("Something Went Wrong");
             }
                 this.error = true;
         }
