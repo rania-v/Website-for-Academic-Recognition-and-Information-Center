@@ -6,7 +6,7 @@
         <v-card-text class="text-center pb-0">
             όλα τα παρακάτω στοιχεία είναι απαραίτητα
             <v-form v-model="valid" ref="form" id="reg-form" >
-                <v-row class="ma-0">
+                <v-row class="ma-0" width="100%">
                     <v-col>
                         <v-text-field dense :color="color" v-model="first_name" label="Όνομα" :rules="required_rule" required></v-text-field>
                     </v-col>

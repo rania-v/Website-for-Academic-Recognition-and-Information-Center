@@ -50,13 +50,13 @@
             </v-col>
           </v-card>
         </v-col>
-        <v-col cols="6"  class="d-flex justify-center">
-            <v-parallax src="../assets/back.jpg" width="auto">
+        <v-col cols="6"  class="d-flex justify-center" >
+            <v-parallax src="../assets/back.jpg" width="auto" class="pa-0">
             <!-- <v-col > -->
               <v-card v-if="this.$store.state.User == null" flat color="transparent">
 
-                <v-card-actions class="pa-0 ma-0" width="100%">
-                  <!-- <v-spacer></v-spacer>
+                <v-card-actions class="pa-0 ma-0" width="100%" v-if="this.$store.state.User == null">
+                  <v-spacer></v-spacer>
                   <v-card-text v-if="signup" class="white--text text-right">
                     Δεν έχεις λογαριασμό?
                   </v-card-text>
@@ -64,7 +64,7 @@
                     Είσαι ήδη εγγεγραμμένος χρήστης?
                   </v-card-text>
                   <v-btn v-if="signup" @click="signin=true, signup=false" text rounded dark small color="indigo darken-4">Δημιουργία λογαριασμού</v-btn>
-                  <v-btn v-if="signin" @click="signin=false, signup=true" text rounded dark small color="indigo darken-4">Σύνδεση σε λογαριασμό</v-btn> -->
+                  <v-btn v-if="signin" @click="signin=false, signup=true" text rounded dark small color="indigo darken-4">Σύνδεση σε λογαριασμό</v-btn>
                 </v-card-actions>
                   <SignUp :signin="signin" v-if="signin"/>
                   <SignIn :signup="signup" v-if="signup"/>

@@ -6,20 +6,20 @@
         <v-card-text class="text-center">
             όλα τα παρακάτω στοιχεία είναι απαραίτητα  
             <v-form v-model="valid" ref="form">
-                <v-row>
+                <!-- <v-row  width="100%"> -->
                     <v-spacer></v-spacer>
-                    <v-col>
+                    <!-- <v-col> -->
                         <v-text-field :color="color" v-model="mail" label="e-mail" :rules="required_rule" required></v-text-field>
-                    </v-col>
+                    <!-- </v-col> -->
                     <v-spacer></v-spacer>
-                </v-row>
-                <v-row>
+                <!-- </v-row> -->
+                <!-- <v-row> -->
                     <v-spacer></v-spacer>
-                    <v-col>
+                    <!-- <v-col> -->
                         <v-text-field :color="color" v-model="password" label="Κωδικός" :rules="required_rule" required validate-on-blur></v-text-field>
-                    </v-col>
+                    <!-- </v-col> -->
                     <v-spacer></v-spacer>
-                </v-row>
+                <!-- </v-row> -->
             </v-form>
         </v-card-text>
         <v-card-actions>
