@@ -1,19 +1,16 @@
 <template>
     <v-container fluid>
         <v-row max-height="10%">
-            <v-col style="max-height:10%">
-        <v-card class="ma-2">
-            <v-card-title>
-                <h3 class="font-weight-thin pr-3">Αναζήτηση σε όλες τις ερωτήσεις</h3>
-                <v-autocomplete v-model="search" :items="questions" item-text="quest" label="Πληκτρολογήστε την ερώτησή σας ή λέξεις κλειδιά"></v-autocomplete>
-            </v-card-title>
-        </v-card>
+            <v-col>
+
+        <h1 class="font-weight-thin">Αναγνώρηση</h1>
             </v-col>
+            
+            
         </v-row>
-            {{search}}
         <v-row>
             <v-col cols="3" style="position:relative">
-                <v-navigation-drawer permanent style="position: static">
+                <v-navigation-drawer v-model="nav_dr" permanent style="position: static">
                     <v-list>
                         <v-list-item v-for="i in items" :key="i.name" link :to="i.route" active-class="indigo--text">
                             <v-list-item-icon><v-icon>{{i.icon}}</v-icon></v-list-item-icon>
@@ -31,19 +28,19 @@
 
 <script>
 
-// import Faq_log from '../components/Faq_log.vue'
+// import AnEr1 from '../components/AnEr1.vue'
 
 export default({
-    namae: 'FAQ',
+    namae: 'Anagnwrish',
     data: function() {
         return{
             search: null,
             nav_dr: null,
             items: [
-                {name: 'Ο Λογαρισμός μου', icon: 'fas fa-user-circle', route:"/FAQ/o-logariasmos-mou"},
-                {name: 'Αιτήσεις', icon: 'fas fa-file-alt', route:"/FAQ/aithseis"}
+                {name: 'Η πορεία μιας αίτησης', icon: 'fas fa-user-circle', route:"/Anagnwrish/erothsh1"},
+                {name: 'Αιτήματα υπέρβασης σειράς προτεραιότητας', icon: 'fas fa-file-alt', route:"/Anagnwrish/erothsh2"},
+                {name: 'Αιτήματα φορέων για επιβεβαίωση γνησιότητας πράξεων αναγνώρισης', icon: 'fas fa-book', route:"/Anagnwrish/erothsh3"},
             ],
-            
         }
     },
 })
