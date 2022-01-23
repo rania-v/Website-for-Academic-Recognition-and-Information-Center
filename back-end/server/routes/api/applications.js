@@ -9,7 +9,13 @@ router.get('/', async (req, res) => {
     res.send(await applications.find({}).toArray());
 })
 
-// Get Application
+// Get Submited Applications
+router.get('/submited', async (req, res) => {
+    const applications = await loadAllApplications();
+    res.send(await applications.find({'application.genika.status' : 'submited'}).toArray());
+})
+
+// Get Application by Id
 router.post('/getuser', async (req, res) => {
     const applications = await loadAllApplications();
     const application = await applications.find({"_id": mongodb.ObjectID(req.body.id)}).toArray()

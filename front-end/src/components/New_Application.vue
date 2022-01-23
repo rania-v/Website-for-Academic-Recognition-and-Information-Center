@@ -19,10 +19,10 @@
                 <v-stepper-content step="1">
                     <v-row>
                         <v-col class="d-flex align-center">
-                            <v-select :items="appl_type" label="Είδος Αίτησης"></v-select>
+                            <v-select :items="appl_type" v-model="application.genika.type" label="Είδος Αίτησης"></v-select>
                         </v-col>
                         <v-col class="d-flex align-center">
-                            <v-select :items="studies_level" v-model="level" label="Επίπεδο Σπουδών"></v-select>
+                            <v-select :items="studies_level" v-model="application.genika.st_level"  label="Επίπεδο Σπουδών"></v-select>
                         </v-col>
                     </v-row>
                     <v-card v-if="level=='Βασικό Πτυχίο'" flat>
@@ -31,7 +31,7 @@
                         <v-col class="d-flex align-center flex-column">
                             <v-row>
                                 <v-col class="pr-0 mr-0">
-                                    <v-radio-group v-model="isotimia" mandatory label="Ισοτιμία/Αντιστοιχία Πτυχίου">
+                                    <v-radio-group v-model="application.genika.isotimia"  mandatory label="Ισοτιμία/Αντιστοιχία Πτυχίου">
                                         <v-radio label=" Ισοτιμία και Αντιστοιχία Πτυχίου" value="1"></v-radio>
                                         <v-radio label=" Ισοτιμία Πτυχίου" value="2"></v-radio>
                                     </v-radio-group>
@@ -135,6 +135,7 @@
                 του προφιλ σας στον προσωπικό σας λογαρισμό
             </v-subtitle>
         </v-alert>
+        <!-- {{user_id}} -->
     </div>
 </template>
 
@@ -157,6 +158,7 @@ export default ({
     },
     data: function() {
         return {
+            user_afm: this.$store.state.User.personal.afm,
             consent: false,
             sub: false,
             level: null,
@@ -171,6 +173,7 @@ export default ({
                 {id: 'ΤΕΙ',value: '2'},
             ],
             application: {
+                user_afm: this.$store.state.User.personal.afm,
                 genika: {
                     status: "",
                     type: "",

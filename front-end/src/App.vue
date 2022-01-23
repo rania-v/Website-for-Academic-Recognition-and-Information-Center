@@ -11,11 +11,11 @@
           <v-row>
             <v-spacer></v-spacer>
             <v-col cols="8" align-self="center" align="right">
-              <v-div v-if="!connected">
+              <v-div v-if="this.$store.state.User == null">
                 <v-btn rounded x-small text class="purple lighten-2 ma-2" v-on:click="sign_up = true">Δημιουργία Λογαρισμού</v-btn>
                 <v-btn rounded small class="ma-2 purple darken-2" v-on:click="sign_in = true">Σύνδεση</v-btn>
               </v-div>
-              <div v-if="user!=null">
+              <div v-if="this.$store.state.User != null">
                 <router-link to="/user-profile/personal-info" class="white--text" style="text-decoration: none;">
                   <v-icon small class="mr-2">fas fa-user</v-icon>
                   {{user.name}}
@@ -28,9 +28,9 @@
                   </template>
                   <v-list>
                     <v-list-item link to="/user-profile/personal-info">Προσωπικά Στοιχεία</v-list-item>
-                    <v-list-item link to="oi-aithseis-mou">Λογαριασαμός</v-list-item>
+                    <v-list-item link to="logariasmos">Λογαριασαμός</v-list-item>
                     <v-list-item link to="ta-dikaiologhtika-mou">Τα Δικαιολογητικά μου</v-list-item>
-                    <v-list-item link to="logariasmos">Οι Αιτήσεις μου</v-list-item>
+                    <v-list-item link to="oi-aithseis-mou">Οι Αιτήσεις μου</v-list-item>
                     <v-list-item link @click="log_off=true" class="red--text text--darken-2">Αποσύνδεση</v-list-item>
                   </v-list>
                 </v-menu>
@@ -61,7 +61,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn class="red darken-2 white--text" @click="connected=false">Αποσύνδεση</v-btn>
+            <v-btn class="red darken-2 white--text" v-on:click="LogOut">Αποσύνδεση</v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -101,7 +101,7 @@
 </style>
 
 <script>
-import UserService from './UserService'
+// import UserService from './UserService'
 
 import SignIn from "./components/SignIn.vue"
 import SignUp from "./components/SignUp.vue"
@@ -114,7 +114,7 @@ export default {
   },
   data: function(){
     return {
-      user: null,
+      user: this.$store.state.User,
       log_off: false,
       usr_menu: false,
       connected: true,
@@ -135,21 +135,10 @@ export default {
     }
   },
   methods: {
-    async con() {
-            // console.log("ok");
-            // console.log("vue", this.mail, this.password)
-            try {
-                const u = await UserService.connected()
-                this.user = u.data
-                this.connected = true;
-                return
-            } catch (err) {
-                // swal("Error", "Something Went Wrong", "error");
-                console.log("lalal");
-            }
-                this.user = null
-                this.connected = false;
-        }
+    LogOut() {
+      this.$store.commit('LOGOUT');
+      this.$router.push('/')
+    }
   }
 };
 </script>

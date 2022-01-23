@@ -1,15 +1,16 @@
 import axios from 'axios';
+// import store from './store'
+// import {reactive} from 'vue'
+
 const url = 'http://localhost:5000/api/user/';
 
-
-var U = null;
+let U = null
 
 class UserServices {
     // Get User
     static async getAllUsers() {
         const res = await axios.get(url);
-            try {
-                
+            try {  
                 const data = res.data;
                     return data.map(user => ({
                             ...user,
@@ -32,7 +33,7 @@ class UserServices {
             }
     }
 
-    static connected() {
+    connected() {
         return U;
     }
 
@@ -46,13 +47,15 @@ class UserServices {
     }
 
     // Login
-    static loginUser(email, password) {
-        const u = axios.post(`${url}/login`, {
+    static async loginUser(email, password) {
+
+        try{ const u = await axios.post(`${url}/login`, {
             email: email,
-            password: password
-        });
-        U = u;
-        return u;
+            password: password});
+            return u;
+        }catch(err) {
+            return err;
+        }
     }
 
     //Update Personal Info
@@ -72,7 +75,7 @@ class UserServices {
             tk: tk,
             afm: afm
         });
-        U = u;
+        // U = u;
         return u;
     }
 
@@ -84,7 +87,7 @@ class UserServices {
             mail: mail,
             password: pass
         });
-        U = u;
+        // U = u;
         return u;
     }
 

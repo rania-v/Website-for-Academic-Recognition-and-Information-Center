@@ -3,6 +3,7 @@ const mongodb = require('mongodb');
 
 const router = express.Router();
 
+
 // Get All Users
 router.get('/', async (req, res) => {
     const users = await loadAllUsers();
@@ -18,9 +19,9 @@ router.post('/getuser', async (req, res) => {
 
 //Add User
 router.post('/', async(req, res) => {
-    console.log("skata");
     const users = await loadAllUsers();
     await users.insertOne({
+        is_admin: false,
         name: req.body.name,
         email: req.body.name,
         password: req.body.password,
