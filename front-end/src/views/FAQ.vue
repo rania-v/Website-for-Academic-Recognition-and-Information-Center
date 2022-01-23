@@ -41,7 +41,10 @@ export default({
             nav_dr: null,
             items: [
                 {name: 'Ο Λογαρισμός μου', icon: 'fas fa-user-circle', route:"/FAQ/o-logariasmos-mou"},
-                {name: 'Αιτήσεις', icon: 'fas fa-file-alt', route:"/FAQ/aithseis"}
+                {name: 'Αιτήσεις', icon: 'fas fa-file-alt', route:"/FAQ/aithseis"},
+                {name: 'Δικαιολογητικά', icon: 'fas fa-book', route:"/FAQ/dikaiologitika"},
+                {name: 'Εργασία', icon: 'fas fa-briefcase', route:"/FAQ/spoudes"},
+                {name: 'Σπουδές', icon: 'fas fa-graduation-cap', route:"/FAQ/ergasia"}
             ],
             
         }

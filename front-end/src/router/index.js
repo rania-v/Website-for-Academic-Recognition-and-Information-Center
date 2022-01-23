@@ -15,6 +15,9 @@ import Anagnwrish from '../views/Anagnwrish.vue'
 import AnEr1 from '../components/AnEr1.vue'
 import AnEr2 from '../components/AnEr2.vue'
 import AnEr3 from '../components/AnEr3.vue'
+import Dikaiolog from '../components/Dikaiolog'
+import Spoudes from '../components/Spoudes.vue'
+import Ergasia from '../components/Ergasia.vue'
 import Admin from '../views/Admin.vue'
 Vue.use(VueRouter)
 
@@ -44,6 +47,21 @@ const routes = [
         path: '/FAQ/aithseis',
         name: 'aithseis',
         component: Aithseis
+      },
+      {
+        path: '/FAQ/dikaiologitika',
+        name: 'dikaiologitika',
+        component: Dikaiolog
+      },
+      {
+        path: '/FAQ/spoudes',
+        name: 'spoudes',
+        component: Spoudes
+      },
+      {
+        path: '/FAQ/ergasia',
+        name: 'ergasia',
+        component: Ergasia
       },
       
     ]
