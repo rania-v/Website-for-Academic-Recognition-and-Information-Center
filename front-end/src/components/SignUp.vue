@@ -102,6 +102,8 @@ export default {
                 try {
                     await UserServices.createUser(this.last_name, this.password, this.mail);
                     this.created = true;
+                    this.$store.commit('LOGIN', this.user)
+                    this.$router.push('/user-profile')
                 }catch(err) {
                     this.error = err.message;
                 }
