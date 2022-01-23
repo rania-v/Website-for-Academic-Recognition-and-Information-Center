@@ -11,6 +11,10 @@ import UserPersonal from '../components/User_personal.vue'
 import MyAithseis from '../components/Aithseis_mou.vue'
 import Dikaiologhtika from '../components/Dikaiologhtika.vue'
 import Logariasmos from '../components/Logariasmos.vue'
+import Anagnwrish from '../views/Anagnwrish.vue'
+import AnEr1 from '../components/AnEr1.vue'
+import AnEr2 from '../components/AnEr2.vue'
+import AnEr3 from '../components/AnEr3.vue'
 import Admin from '../views/Admin.vue'
 Vue.use(VueRouter)
 
@@ -41,6 +45,30 @@ const routes = [
         name: 'aithseis',
         component: Aithseis
       },
+      
+    ]
+  },
+  {
+    path: '/Anagnwrish',
+    redirect: '/Anagnwrish/erothsh1',
+    name: 'Anagnwrish',
+    component: Anagnwrish,
+    children: [
+      {
+        path: '/Anagnwrish/erothsh1',
+        name: 'AnEr1',
+        component: AnEr1
+      },
+      {
+        path: '/Anagnwrish/erothsh2',
+        name: 'AnEr2',
+        component: AnEr2
+      },
+      {
+        path: '/Anagnwrish/erothsh3',
+        name: 'AnEr3',
+        component: AnEr3
+      }
       
     ]
   },
@@ -76,12 +104,12 @@ const routes = [
         name: 'logariasmos',
         component: Logariasmos
       },
+      {
+        path: '/admin',
+        name: 'Admin',
+        component: Admin
+      },
     ]
-  },
-  {
-    path: '/admin',
-    name: 'Admin',
-    component: Admin
   },
 ]
 
